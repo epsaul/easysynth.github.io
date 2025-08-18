@@ -33,4 +33,4 @@ Inspired by Bauhaus principles: clarity, geometry, and functional beauty.
 
 ## 📬 Contact
 
-For feedback or collaboration: [edsaul@yahoo.co.uk](mailto:edsaul@yahoo.co.uk)
+For feedback or collaboration: [epsaul@yahoo.co.uk](mailto:epsaul@yahoo.co.uk)
