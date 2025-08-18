@@ -32,3 +32,31 @@ section {
   border-left: 4px solid #000;
   padding-left: 1rem;
 }
+.bauhaus-footer {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 3em;
+  padding: 1em 0;
+  border-top: 2px solid #333;
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+.bauhaus-footer em {
+  color: #c00;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.bauhaus-footer a {
+  color: #0066cc;
+  text-decoration: none;
+  border-bottom: 1px dotted #0066cc;
+}
+
+.bauhaus-footer a:hover {
+  color: #003366;
+  border-bottom: 1px solid #003366;
+}
+
