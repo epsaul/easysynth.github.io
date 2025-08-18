@@ -26,6 +26,16 @@ h2 {
   border-left: 4px solid #000;
   padding-left: 0.5rem;
 }
+a {
+  color: #0066cc;
+  text-decoration: none;
+  border-bottom: 1px dotted #0066cc;
+}
+
+a:hover {
+  color: #003366;
+  border-bottom: 1px solid #003366;
+}
 
 
 p {
