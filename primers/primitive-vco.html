@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primitive VCO · EasySynth</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <style>
+    .slider-container {
+      margin-top: 1em;
+    }
+    #waveform path {
+      transition: d 0.3s ease;
+    }
+    .readout {
+      font-family: monospace;
+      margin-top: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <section id="primitive-vco" class="primer">
+    <header>
+      <h1>Primitive VCO</h1>
+      <p class="subtitle">Voltage as Rhythm, Transistors as Timekeepers</p>
+    </header>
+
+    <article>
+      <section class="intro">
+        <p>This module explores how a classic transistor flip-flop can be transformed into a voltage-controlled oscillator. No ICs — just analog logic sculpted into sound.</p>
+      </section>
+
+      <section class="components">
+        <h2>Core Circuit Elements</h2>
+        <ul>
+          <li>2 × NPN Transistors (e.g. 2N3904)</li>
+          <li>2 × Capacitors (10µF electrolytic)</li>
+          <li>4–6 × Resistors (fixed + voltage-controlled)</li>
+          <li>1 × Control Voltage Input (0–5V or 0–9V)</li>
+          <li>Optional: RC filter for waveform shaping</li>
+        </ul>
+      </section>
+
+      <details open>
+        <summary><h2>How It Works</h2></summary>
+        <ol>
+          <li>Transistors toggle via capacitor-coupled feedback</li>
+          <li>Capacitor charge time sets oscillation frequency</li>
+          <li>Control voltage modulates resistance in RC path</li>
+          <li>Output: square wave or filtered triangle-like wave</li>
+        </ol>
+      </details>
+
+      <details>
+        <summary><h2>Circuit Variations</h2></summary>
+        <ul>
+          <li>JFET as voltage-controlled resistor</li>
+          <li>LED indicators on transistor collectors</li>
+          <li>RC filter for smoother waveform</li>
+        </ul>
+      </details>
+
+      <details open>
+        <summary><h2>Visual Index</h2></summary>
+        <p>Interactive diagram: voltage slider → waveform preview → frequency readout</p>
+
+        <div class="slider-container">
+          <label for="voltage">Control Voltage (V):</label>
+          <input type="range" id="voltage" min="0" max="9" step="0.1" value="5" />
+          <div class="readout">Frequency: <span id="freq">500</span> Hz</div>
+        </div>
+
+        <svg id="waveform" width="300" height="200" viewBox="0 0 300 200">
+          <path id="wave" d="M10 150 L50 100 L90 150 L130 100 L170 150" stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="10" y="180" font-size="12">Time →</text>
+          <text x="5" y="20" font-size="12" transform="rotate(-90 5,20)">Voltage</text>
+        </svg>
+      </details>
+
+      <section class="philosophy">
+        <h2>Philosophical Footnote</h2>
+        <p>From binary logic comes rhythm, and from rhythm comes tone. Even the simplest components — when arranged with care — can sing.</p>
+      </section>
+    </article>
+
+    <footer>
+      <p>© 2025 Edward Saul · Form follows function, but meaning follows form</p>
+    </footer>
+  </section>
+
+  <script>
+    const slider = document.getElementById('voltage');
+    const freqDisplay = document.getElementById('freq');
+    const wave = document.getElementById('wave');
+
+    function updateWaveform(voltage) {
+      const freq = Math.round(voltage * 100);
+      freqDisplay.textContent = freq;
+
+      const baseY = 150;
+      const peakY = baseY - voltage * 10;
+      const path = `M10 ${baseY} L50 ${peakY} L90 ${baseY} L130 ${peakY} L170 ${baseY}`;
+      wave.setAttribute('d', path);
+    }
+
+    slider.addEventListener('input', () => {
+      const voltage = parseFloat(slider.value);
+      updateWaveform(voltage);
+    });
+
+    updateWaveform(parseFloat(slider.value));
+  </script>
+</body>
+</html>
