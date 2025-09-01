@@ -98,14 +98,26 @@
       freqDisplay.textContent = freq;
 
       const baseY = 150;
-      const peakY = baseY - voltage * 10;
-      const path = `M10 ${baseY} L50 ${peakY} L90 ${baseY} L130 ${peakY} L170 ${baseY}`;
-      wave.setAttribute('d', path);
+      const peakY = 100;
+      const spacing = Math.max(10, 40 - voltage * 2); // Clamp spacing
+
+      const path = `
+        M10 ${baseY}
+        L${10 + spacing} ${peakY}
+        L${10 + spacing * 2} ${baseY}
+        L${10 + spacing * 3} ${peakY}
+        L${10 + spacing * 4} ${baseY}
+      `;
+      wave.setAttribute('d', path.trim());
     }
 
+    let debounceTimer;
     slider.addEventListener('input', () => {
-      const voltage = parseFloat(slider.value);
-      updateWaveform(voltage);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const voltage = parseFloat(slider.value);
+        updateWaveform(voltage);
+      }, 50);
     });
 
     updateWaveform(parseFloat(slider.value));
