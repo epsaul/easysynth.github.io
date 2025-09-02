@@ -1,0 +1,3 @@
+*.bak
+primitive_vco-backups/
+*.kicad_prl
